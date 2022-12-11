@@ -1,0 +1,11 @@
+/* Group Actors by Film */
+SELECT Concat(act.first_name, ' ', act.last_name) AS Actor,
+       f.title                                    AS Film
+FROM   film AS f
+       LEFT OUTER JOIN film_actor AS fa
+                    ON f.film_id = fa.film_id
+       INNER JOIN actor AS act
+               ON act.actor_id = fa.actor_id
+GROUP  BY film,
+          actor
+ORDER  BY film 
